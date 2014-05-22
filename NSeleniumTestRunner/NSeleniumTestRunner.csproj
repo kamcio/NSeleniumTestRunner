@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{05B0AC5D-325D-481A-8C8E-EFC518D6C5C7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NSeleniumTestRunner</RootNamespace>
+    <AssemblyName>NSeleniumTestRunner</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium">
+      <HintPath>..\packages\Selenium.WebDriverBackedSelenium.2.41.0\lib\net40\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThoughtWorks.Selenium.Core">
+      <HintPath>..\packages\Selenium.RC.2.41.0\lib\net40\ThoughtWorks.Selenium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.41.0\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.41.0\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Defaults.cs" />
+    <Compile Include="FlagsHelper.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="IO\HtmlStringFileReader.cs" />
+    <Compile Include="IO\Infrastructure\IFileReader.cs" />
+    <Compile Include="Messages\BaseResult.cs" />
+    <Compile Include="Messages\TestRunResult.cs" />
+    <Compile Include="Parser\Infrastructure\ISeleniumHtmlParser.cs" />
+    <Compile Include="Parser\SeleniumHtmlParser.cs" />
+    <Compile Include="Parser\TestItem.cs" />
+    <Compile Include="Parser\TestScenarioContext.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestRunner\Infrastructure\AssertTitle.cs" />
+    <Compile Include="TestRunner\Infrastructure\IHtmlHelper.cs" />
+    <Compile Include="TestRunner\Infrastructure\ITestStrategy.cs" />
+    <Compile Include="TestRunner\Infrastructure\TestTemplate.cs" />
+    <Compile Include="TestRunner\SeleniumAutomatedTest.cs" />
+    <Compile Include="TestRunner\SeleniumHtmlHelper.cs" />
+    <Compile Include="TestRunner\TestCommandsMap.cs" />
+    <Compile Include="TestRunner\TestContext.cs" />
+    <Compile Include="TestRunner\TestStrategies\AssertAlert.cs" />
+    <Compile Include="TestRunner\TestStrategies\Click.cs" />
+    <Compile Include="TestRunner\TestStrategies\ClickAndWait.cs" />
+    <Compile Include="TestRunner\TestStrategies\OpenPage.cs" />
+    <Compile Include="TestRunner\TestStrategies\Pause.cs" />
+    <Compile Include="TestRunner\TestStrategies\Select.cs" />
+    <Compile Include="TestRunner\TestStrategies\SendKeys.cs" />
+    <Compile Include="TestRunner\TestStrategies\TypeText.cs" />
+    <Compile Include="TestRunner\TestStrategies\VerifyElementPresent.cs" />
+    <Compile Include="TestRunner\TestStrategies\VerifyText.cs" />
+    <Compile Include="TestRunner\TestStrategies\VerifyTitle.cs" />
+    <Compile Include="TestRunner\TestStrategies\WaitForElementPresent.cs" />
+    <Compile Include="TestRunner\TestStrategies\WaitForPageToLoad.cs" />
+    <Compile Include="WebDriver\DriverCommands.cs" />
+    <Compile Include="WebDriver\DriverType.cs" />
+    <Compile Include="WebDriver\WebDriverFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chromedriver.exe" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
